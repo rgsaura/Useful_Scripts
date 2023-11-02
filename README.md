@@ -2,4 +2,4 @@
 
 ### Unix Enviroment:
 
-*Set_power*: Kill and launch programs based on lower or high power.
+`Set_power`: Kill and launch programs based on lower or high power.
