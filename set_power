@@ -1,0 +1,54 @@
+#!/bin/bash
+
+# Programs list
+apps=(
+"Alfred"
+"Cursor"
+"Flux"
+"Folder Peek"
+"Menuwhere"
+"Obsidian"
+"PopClip"
+"Slidepad"
+"SoundSource"
+"Termius"
+"Vivaldi"
+"AltTab"
+"Little Snitch"
+"Little Snitch Agent"
+"Parallels Desktop"
+"Widgetter"
+  )
+
+activate_low_power() {
+  echo "Activating low power mode..."
+  for app in "${apps[@]}"; do
+    apps+=( "ProtonVPN" "prl_client_app")
+    killall "$app" 2>/dev/null
+    echo "$(tput setaf 1)$app$(tput sgr0) closed successfully."
+  done
+  # Enable Low Power Mode
+  sudo pmset -a powermode 0
+
+}
+
+activate_normal_mode() {
+  echo "Activating normal mode..."
+  for app in "${apps[@]}"; do
+    apps+=()
+    osascript -e "tell application \"$app\" to launch" &>/dev/null
+    echo "message"echo "$(tput setaf 2)$app$(tput sgr0) opened successfully."
+  done
+  # Disable Low Power Mode
+  sudo pmset -a powermode 1
+}
+
+if [ "$1" == "--low" ] || [ "$1" == "-l" ]; then
+  activate_low_power
+elif [ "$1" == "--high" ] || [ "$1" == "-h" ]; then
+  activate_normal_mode
+else
+  echo "Invalid flag. Use --low-power or --normal."
+  exit 2
+fi
+
