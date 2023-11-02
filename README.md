@@ -1,2 +1,5 @@
 # Useful_Scripts
-Scripts to make your life and enviroment easier
+
+### Unix Enviroment:
+
+*Set_power*: Kill and launch programs based on lower or high power.
